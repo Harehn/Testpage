@@ -1,0 +1,126 @@
+<html>
+<body>
+
+<canvas id="platformCanvas" width="1200" height="600">
+</canvas>
+
+<script>
+let canvas;
+let context;
+let right=true;//!right is left
+let mode=1;
+
+window.onload=function() {
+    canvas=document.getElementById("platformCanvas");
+    context=canvas.getContext("2d");
+	setup();
+    document.addEventListener("keydown",keyPush);
+    //setInterval(game,1000/15);
+}
+
+/*
+class User {
+
+  constructor(name) {
+    this.name = name;
+  }
+
+  sayHi() {
+    alert(this.name);
+  }
+
+}
+
+let user = new User("John");
+user.sayHi();
+*/
+class Arrow(_x,_y,_width,_height){
+	this.x=_x
+	this.y=_y;
+	this.width=_width;
+	this.height=_height;
+	
+	function drawArrow(xOffset,yOffset,width,height){
+	let unitX=width/8;
+	let unitY=height/4;
+	context.lineWidth=3;
+	context.beginPath()
+	context.moveTo(0      +xOffset,1*unitY+yOffset);
+	context.lineTo(4*unitX+xOffset,1*unitY+yOffset);
+	context.lineTo(4*unitX+xOffset,0      +yOffset);
+	context.lineTo(8*unitX+xOffset,2*unitY+yOffset);
+	context.lineTo(4*unitX+xOffset,4*unitY+yOffset);
+	context.lineTo(4*unitX+xOffset,3*unitY+yOffset);
+	context.lineTo(0      +xOffset,3*unitY+yOffset);
+	context.lineTo(0      +xOffset,1*unitY+yOffset);
+	context.stroke();
+}
+}
+
+
+
+function setup(){
+
+	leftBackground(66, 244, 220);
+	rightBackground(66, 244, 220);
+	setBorders();
+	drawArrow((50.0*canvas.width/1200)+(500.0*canvas.width/1200),100.0*canvas.height/600,-500.0*canvas.width/1200,400.0*canvas.height/600);
+	drawArrow((50.0*canvas.width/1200)+(canvas.width/2),100.0*canvas.height/600,500.0*canvas.width/1200,400.0*canvas.height/600);
+	
+}
+
+
+
+
+function setBorders(){
+	context.fillStyle= "black";
+	context.rect(0,0,canvas.width,canvas.height);
+	context.lineWidth=6;
+	context.stroke();
+	
+	drawLine(canvas.width/2,0,canvas.width/2,canvas.height);
+}
+
+function drawLine(x1,y1,x2,y2){
+	context.lineWidth=3;
+	context.beginPath()
+	context.moveTo(x1,y1);
+	context.lineTo(x2,y2);
+	context.stroke();
+}
+
+function keyPush(evt) {
+    switch(evt.keyCode) {
+	case 76: check();
+		break;
+	case 65: check();
+		break;
+	default: 
+		break;
+	}
+}
+
+function check(){
+	
+}
+
+function background(r,g,b){
+	context.fillStyle= "rgb(" +r+ "," +g+ "," +b+")";
+	context.fillRect(0,0,canvas.width,canvas.height);
+}
+
+function leftBackground(r,g,b){
+	context.fillStyle= "rgb(" +r+ "," +g+ "," +b+")";
+	context.fillRect(0,0,canvas.width/2,canvas.height);
+}
+
+function rightBackground(r,g,b){
+	context.fillStyle= "rgb(" +r+ "," +g+ "," +b+")";
+	context.fillRect(canvas.width/2,0,canvas.width/2,canvas.height);
+}
+
+
+
+</script>
+</body>
+</html>
