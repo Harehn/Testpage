@@ -40,9 +40,10 @@ class Arrow{
 	this.y=_y;
 	this.width=_width;
 	this.height=_height;
+	this.drawArrow(_x,_y,_width,_height);
 	}
 	
-	function drawArrow(xOffset,yOffset,width,height){
+	drawArrow(xOffset,yOffset,width,height){
 	let unitX=width/8;
 	let unitY=height/4;
 	context.lineWidth=3;
@@ -66,9 +67,10 @@ function setup(){
 	leftBackground(66, 244, 220);
 	rightBackground(66, 244, 220);
 	setBorders();
-	drawArrow((50.0*canvas.width/1200)+(500.0*canvas.width/1200),100.0*canvas.height/600,-500.0*canvas.width/1200,400.0*canvas.height/600);
-	drawArrow((50.0*canvas.width/1200)+(canvas.width/2),100.0*canvas.height/600,500.0*canvas.width/1200,400.0*canvas.height/600);
-	
+	//drawArrow((50.0*canvas.width/1200)+(500.0*canvas.width/1200),100.0*canvas.height/600,-500.0*canvas.width/1200,400.0*canvas.height/600);
+	//drawArrow((50.0*canvas.width/1200)+(canvas.width/2),100.0*canvas.height/600,500.0*canvas.width/1200,400.0*canvas.height/600);
+	let left_Arrow= new Arrow((50.0*canvas.width/1200)+(500.0*canvas.width/1200),100.0*canvas.height/600,-500.0*canvas.width/1200,400.0*canvas.height/600);
+	let right_Arrow= new Arrow((50.0*canvas.width/1200)+(canvas.width/2),100.0*canvas.height/600,500.0*canvas.width/1200,400.0*canvas.height/600);
 }
 
 
