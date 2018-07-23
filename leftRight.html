@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <body>
 
@@ -11,6 +12,7 @@ let right=true;//!right is left
 let mode=1;
 let left_Arrow;
 let right_Arrow;
+let LRBox;
 
 window.onload=function() {
     canvas=document.getElementById("platformCanvas");
@@ -49,6 +51,7 @@ class Arrow{
 		let unitX=width/8;
 		let unitY=height/4;
 		context.lineWidth=3;
+		
 		context.beginPath()
 		context.moveTo(0      +xOffset,1*unitY+yOffset);
 		context.lineTo(4*unitX+xOffset,1*unitY+yOffset);
@@ -67,6 +70,23 @@ class Arrow{
 	}
 }
 
+class centreBox{
+	constructor(){
+	this.right=true;
+	this.draw();
+	}
+	draw(){
+		context.fillStyle="white";
+		context.fillRect((canvas.width/2)-90,0,180,120);
+		context.fillStyle="black";
+		context.rect((canvas.width/2)-90,0,180,60);
+		context.rect((canvas.width/2)-90,60,180,60);
+		context.stroke();
+		context.font="30px Arial";
+		context.fillText("left",(canvas.width/2)-90,0); 
+	}
+}
+
 
 
 function setup(){
@@ -76,6 +96,7 @@ function setup(){
 	setBorders();
 	left_Arrow= new Arrow((50.0*canvas.width/1200)+(500.0*canvas.width/1200),100.0*canvas.height/600,-500.0*canvas.width/1200,400.0*canvas.height/600);
 	right_Arrow= new Arrow((50.0*canvas.width/1200)+(canvas.width/2),100.0*canvas.height/600,500.0*canvas.width/1200,400.0*canvas.height/600);
+	LRBox=new centreBox();
 }
 
 
