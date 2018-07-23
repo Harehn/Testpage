@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Left/Right</title>
-<script type="text/javascript" src="Arrow.js"></script>
+	<meta charset="utf-8">
+	<title>Left/Right</title>
+	<script type="text/javascript" src="Arrow.js"></script>
+	<script type="text/javascript" src="CentreBox.js"></script>
 </head>
 <body>
 
-<canvas id="platformCanvas" width="1200" height="600">
-</canvas>
+<canvas id="platformCanvas" width="1200" height="600"></canvas>
 
 <script>
 let canvas;
@@ -26,44 +26,6 @@ window.onload=function() {
     document.addEventListener("keydown",keyPush);
     //setInterval(game,1000/15);
 }
-
-/*
-class User {
-
-  constructor(name) {
-    this.name = name;
-  }
-
-  sayHi() {
-    alert(this.name);
-  }
-
-}
-
-let user = new User("John");
-user.sayHi();
-*/
-
-
-class centreBox{
-	constructor(){
-	this.right=true;
-	this.draw();
-	}
-	draw(){
-		context.fillStyle="white";
-		context.fillRect((canvas.width/2)-90,0,180,120);
-		context.fillStyle="black";
-		context.rect((canvas.width/2)-90,0,180,60);
-		context.rect((canvas.width/2)-90,60,180,60);
-		context.stroke();
-		context.font="30px Arial";
-		context.fillText("left",(canvas.width/2)-90,20);
-	}
-}
-
-
-
 function setup(){
 
 	leftBackground(66, 244, 220);
@@ -111,11 +73,6 @@ function check(){
 	
 }
 
-function background(r,g,b){
-	context.fillStyle= "rgb(" +r+ "," +g+ "," +b+")";
-	context.fillRect(0,0,canvas.width,canvas.height);
-}
-
 function leftBackground(r,g,b){
 	context.fillStyle= "rgb(" +r+ "," +g+ "," +b+")";
 	context.fillRect(0,0,canvas.width/2,canvas.height);
@@ -125,8 +82,6 @@ function rightBackground(r,g,b){
 	context.fillStyle= "rgb(" +r+ "," +g+ "," +b+")";
 	context.fillRect(canvas.width/2,0,canvas.width/2,canvas.height);
 }
-
-
 
 </script>
 </body>
