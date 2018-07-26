@@ -5,6 +5,7 @@
 	<title>Left/Right</title>
 	<script type="text/javascript" src="Arrow.js"></script>
 	<script type="text/javascript" src="CentreBox.js"></script>
+	<script type="text/javascript" src="box.js"></script>
 </head>
 <body>
 
@@ -61,11 +62,18 @@ function drawLine(x1,y1,x2,y2){
 
 function keyPush(evt) {
     switch(evt.keyCode) {
-	case 76: check();
+	case 37://left 
+		check();
+		left_Arrow.hightlight();
+		break;
+	case 39://right 
+		check();
 		right_Arrow.hightlight();
 		break;
-	case 65: check();
-		left_Arrow.hightlight();
+	case 38://up
+		LRBox.stress();
+		break;
+	case 40://down
 		break;
 	default: 
 		break;

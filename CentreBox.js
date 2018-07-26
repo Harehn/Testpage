@@ -17,6 +17,7 @@ class centreBox{
 	}
 	
 	write(){
+	context.fillStyle="black";
 	context.font="30px Arial";
 	context.fillText("left",(canvas.width/2)-transformX(20),transformY(40));
 	context.font="30px Arial";
@@ -25,39 +26,22 @@ class centreBox{
 	
 	stress(){
 		if(right){
-			this.rightBox.highlighted=true;
-			this.leftBox.highlighted=false;
+			//this.rightBox.highlighted=true;
+			//this.leftBox.highlighted=false;
 			
 			this.rightBox.highlight();
-			this.leftBox.highlight();
+			this.leftBox.unhighlight();
 		}else{
-			this.rightBox.highlighted=false;
-			this.leftBox.highlighted=true;
+			//this.rightBox.highlighted=false;
+			//this.leftBox.highlighted=true;
 			
-			this.rightBox.highlight();
+			this.rightBox.unhighlight();
 			this.leftBox.highlight();
 		}
-		this.draw();
+		this.write();
 	}
 	changeDirection(){
 		this.right=!this.right;
-	}
-}
-
-class Box{
-	constructor(x,y,width,height){
-		this.highlighted=false;
-		this.x=x;
-		this.y=y;
-		this.width=width;
-		this.height=height;
-		//this.highlight();
-		context.fillStyle ="white";
-		context.fillRect(this.x,this.y,this.width,this.height);
-	}
-	highlight(){
-		context.fillStyle = this.highlighted? "white":"yellow"
-		context.fillRect(this.x,this.y,this.width,this.height);
 	}
 }
 function transformX(num){
