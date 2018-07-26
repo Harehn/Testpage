@@ -35,8 +35,6 @@ function setup(){
 	left_Arrow= new Arrow((50.0*canvas.width/1200)+(500.0*canvas.width/1200),100.0*canvas.height/600,-500.0*canvas.width/1200,400.0*canvas.height/600);
 	right_Arrow= new Arrow((50.0*canvas.width/1200)+(canvas.width/2),100.0*canvas.height/600,500.0*canvas.width/1200,400.0*canvas.height/600);
 	LRBox=new centreBox();
-	//LRBox.changeDirection();
-	LRBox.stress();
 	
 }
 
@@ -71,9 +69,12 @@ function keyPush(evt) {
 		right_Arrow.hightlight();
 		break;
 	case 38://up
+		//LRBox.rightBox.unhighlight();
 		LRBox.stress();
 		break;
 	case 40://down
+		//LRBox.rightBox.highlight();
+		LRBox.stress();
 		break;
 	default: 
 		break;

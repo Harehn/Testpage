@@ -1,11 +1,11 @@
 class Box{
-	constructor(x,y,width,height){
-		this.highlighted=false;
+	constructor(x,y,width,height,highlighted){
+		this.highlighted=highlighted;
 		this.x=x;
 		this.y=y;
 		this.width=width;
 		this.height=height;
-		this.highlight();
+		this.highlighted?this.highlight():this.unhighlight();
 		this.show();
 	}
 	
@@ -21,7 +21,9 @@ class Box{
 	}
 	show(){
 		context.fillRect(this.x,this.y,this.width,this.height);
-		context.fillStyle="black";
+		context.strokeStyle="black";
+		context.lineWidth=1;
+		context.beginPath();
 		context.rect(this.x,this.y,this.width,this.height);
 		context.stroke();
 	}
