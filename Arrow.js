@@ -23,11 +23,9 @@ class Arrow{
 		context.lineTo(0      +xOffset,3*unitY+yOffset);
 		context.lineTo(0      +xOffset,1*unitY+yOffset);
 		context.stroke();
-		console.log("The arrow is drawn");
 	}
 	
 	hightlight(){
-		console.log("The arrow is highlighted");
 		context.strokeStyle="yellow";
 		this.drawArrow(this.x,this.y,this.width,this.height);
 	}
