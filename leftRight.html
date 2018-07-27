@@ -15,6 +15,7 @@
 let canvas;
 let context;
 let right=true;//!right is left
+let paused=1;
 let mode=1;
 let left_Arrow;
 let right_Arrow;
@@ -35,7 +36,9 @@ function setup(){
 	left_Arrow= new Arrow((50.0*canvas.width/1200)+(500.0*canvas.width/1200),100.0*canvas.height/600,-500.0*canvas.width/1200,400.0*canvas.height/600);
 	right_Arrow= new Arrow((50.0*canvas.width/1200)+(canvas.width/2),100.0*canvas.height/600,500.0*canvas.width/1200,400.0*canvas.height/600);
 	LRBox=new centreBox();
-	
+	displayMode();
+	boxToDisplayCorrectness(0);
+	showPaused();
 }
 
 
@@ -69,16 +72,62 @@ function keyPush(evt) {
 		right_Arrow.hightlight();
 		break;
 	case 38://up
-		//LRBox.rightBox.unhighlight();
 		LRBox.stress();
 		break;
 	case 40://down
-		//LRBox.rightBox.highlight();
 		LRBox.stress();
+		break;
+	case 13: //Enter
+		check();
+		break;
+	case 49: //1
+		if(mode===2){
+			mode=1;
+		}
+		break;
+	case 50: //2
+		if(mode===1){
+			mode=2;
+		}
 		break;
 	default: 
 		break;
 	}
+}
+
+function displayMode(){
+	context.beginPath();
+	context.fillStyle="white";
+	context.fillRect(0,0,100*canvas.width/1200,100*canvas.height/600);
+	context.strokeStyle="black";
+	context.rect(0,0,100*canvas.width/1200,100*canvas.height/600);
+	context.stroke();
+	context.fillStyle="black";
+	context.font="60px Arial";
+	context.fillText(mode+"",30*canvas.width/1200,70*canvas.height/600);
+}
+
+function boxToDisplayCorrectness(num){//1 for green,2 for red and all else is white
+	context.beginPath();
+	if(num===1){
+		context.fillStyle="green";
+	}else if(num===2){
+		context.fillStyle="red";
+	}else{
+		context.fillStyle="white";
+	}
+	context.fillRect(canvas.width-(100*canvas.width/1200),0,100*canvas.width/1200,100*canvas.height/600);
+	context.strokeStyle="black";
+	context.rect(canvas.width-(100*canvas.width/1200),0,100*canvas.width/1200,100*canvas.height/600);
+	context.stroke();
+}
+
+function showPaused(){
+	context.fillStyle="black";
+	context.fillRect(canvas.width-(100*canvas.width/1200),0,100*canvas.width/1200,100*canvas.height/600);
+	context.fillStyle="white";
+	context.fillRect(canvas.width-(40*canvas.width/1200),25*canvas.height/600,20*canvas.width/1200,50*canvas.height/600);
+	context.fillRect(canvas.width-(80*canvas.width/1200),25*canvas.height/600,20*canvas.width/1200,50*canvas.height/600);
 }
 
 function check(){
