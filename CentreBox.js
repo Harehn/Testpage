@@ -1,8 +1,8 @@
 class centreBox{
 	constructor(){
 	this.right=true;
-	this.rightBox=new Box((canvas.width/2)-transformX(90),0,transformX(180),transformY(60),right);
-	this.leftBox=new Box((canvas.width/2)-transformX(90),60,transformX(180),transformY(60),!right);
+	this.leftBox=new Box((canvas.width/2)-transformX(90),0,transformX(180),transformY(60),!this.right);
+	this.rightBox=new Box((canvas.width/2)-transformX(90),60,transformX(180),transformY(60),this.right);
 	this.write();
 	}
 	write(){
@@ -14,7 +14,11 @@ class centreBox{
 	}
 	
 	stress(){
-		if(this.right=!this.right){
+		this.right=!this.right;
+		this.refresh();
+	}
+	refresh(){
+		if(this.right){
 			this.rightBox.highlight();
 			this.leftBox.unhighlight();
 		}else{
@@ -23,8 +27,9 @@ class centreBox{
 		}
 		this.write();
 	}
-	checkIfRight(){
-		return this.right;
+	showDir(){
+		let direction=this.right?"right":"left";
+		console.log("Direction is "+direction);
 	}
 }
 function transformX(num){

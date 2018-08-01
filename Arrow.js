@@ -25,8 +25,13 @@ class Arrow{
 		context.stroke();
 	}
 	
-	hightlight(){
+	highlight(){
 		context.strokeStyle="yellow";
+		this.drawArrow(this.x,this.y,this.width,this.height);
+	}
+	
+	unhighlight(){
+		context.strokeStyle="black";
 		this.drawArrow(this.x,this.y,this.width,this.height);
 	}
 }

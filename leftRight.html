@@ -8,20 +8,21 @@
 	<script type="text/javascript" src="box.js"></script>
 </head>
 <body>
-
+<p>Press left and right arrow as indicated by the highlighted word.</br>Green=correct, Red=wrong</br>Press Enter to start again</p>
 <canvas id="platformCanvas" width="1200" height="600"></canvas>
 
 <script>
 let canvas;
 let context;
-let right=true;//!right is left
-let paused=1;
+//let right=true;//!right is left
+let paused=false;
 let mode=1;
 let left_Arrow;
 let right_Arrow;
 let LRBox;
 
 window.onload=function() {
+	//document.write("Press left and right arrow as indicated by the highlighted word.\nGreen=correct, Red=wrong\nPress Enter to start again");
     canvas=document.getElementById("platformCanvas");
     context=canvas.getContext("2d");
 	setup();
@@ -36,13 +37,10 @@ function setup(){
 	left_Arrow= new Arrow((50.0*canvas.width/1200)+(500.0*canvas.width/1200),100.0*canvas.height/600,-500.0*canvas.width/1200,400.0*canvas.height/600);
 	right_Arrow= new Arrow((50.0*canvas.width/1200)+(canvas.width/2),100.0*canvas.height/600,500.0*canvas.width/1200,400.0*canvas.height/600);
 	LRBox=new centreBox();
-	displayMode();
+	//displayMode();
 	boxToDisplayCorrectness(0);
-	showPaused();
+	//showPaused();
 }
-
-
-
 
 function setBorders(){
 	context.fillStyle= "black";
@@ -64,21 +62,26 @@ function drawLine(x1,y1,x2,y2){
 function keyPush(evt) {
     switch(evt.keyCode) {
 	case 37://left 
-		check();
-		left_Arrow.hightlight();
+		if(!paused){
+			check(false);
+			left_Arrow.highlight();
+		}
 		break;
 	case 39://right 
-		check();
-		right_Arrow.hightlight();
+		if(!paused){
+			check(true);
+			right_Arrow.highlight();
+		}
 		break;
 	case 38://up
-		LRBox.stress();
+		//LRBox.stress();
 		break;
 	case 40://down
-		LRBox.stress();
+		//LRBox.stress();
 		break;
 	case 13: //Enter
-		check();
+		//changeCentreBox();
+		unpause();
 		break;
 	case 49: //1
 		if(mode===2){
@@ -93,6 +96,24 @@ function keyPush(evt) {
 	default: 
 		break;
 	}
+}
+
+function check(right){
+	if (right===LRBox.right){
+		boxToDisplayCorrectness(1);
+	}else
+	{
+		boxToDisplayCorrectness(2);
+	}
+	paused=true;
+}
+
+function unpause(){
+	boxToDisplayCorrectness(0);
+	left_Arrow.unhighlight();
+	right_Arrow.unhighlight();
+	paused=false;
+	changeCentreBox();
 }
 
 function displayMode(){
@@ -130,8 +151,14 @@ function showPaused(){
 	context.fillRect(canvas.width-(80*canvas.width/1200),25*canvas.height/600,20*canvas.width/1200,50*canvas.height/600);
 }
 
-function check(){
-	
+function changeCentreBox(){
+	if (!randomise()){
+		LRBox.stress() ;
+	}
+}
+
+function randomise(){
+	return Math.floor((Math.random() * 2));//Take true as change and false at notChange
 }
 
 function leftBackground(r,g,b){
